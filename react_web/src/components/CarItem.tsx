@@ -1,4 +1,12 @@
 import React from 'react'
+import MyButton from '../UI/button/MyButton'
+
+
+
+
+
+
+
 
 const Car = ({ car, onDelete }) => {
   return (
@@ -6,7 +14,7 @@ const Car = ({ car, onDelete }) => {
           <div className="flex justify-between items-center"> 
             {car.name} {car.model} - {car.year}
           </div>
-          <button className="bg-blue-500 text-white p-2 rounded-md mx-2 my-2 hover:bg-blue-700" onClick={() => onDelete(car)}>Удалить</button>
+          <MyButton onClick={() => onDelete(car)}>Удалить</MyButton>
     </div>
   )
 }

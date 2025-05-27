@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-
+import MyButton from '../UI/button/MyButton'
+import MyInput from '../UI/input/MyInput'
 
 const AddForm = ({create}) => {
     const [name, setName] = useState('')
@@ -22,22 +23,10 @@ const AddForm = ({create}) => {
   return (
     <div className="container mx-auto">
       <form>
-        <input className="border-2 border-gray-300 rounded-md p-2 mx-2 my-2" 
-          type="text" 
-          value={name} 
-          onChange={(e) => setName(e.target.value)} 
-          placeholder="Название" />
-        <input className="border-2 border-gray-300 rounded-md p-2 mx-2 my-2" 
-          type="text" 
-          value={model} 
-          onChange={(e) => setModel(e.target.value)} 
-          placeholder="Модель" />
-        <input className="border-2 border-gray-300 rounded-md p-2 mx-2 my-2" 
-          type="text" 
-          value={year} 
-          onChange={(e) => setYear(Number(e.target.value))} 
-          placeholder="Год" />
-        <button className="bg-blue-500 text-white p-2 rounded-md" type="submit" onClick={addCar}>Добавить</button>
+        <MyInput value={name} onChange={(e) => setName(e.target.value)} placeholder="Название" />
+        <MyInput value={model} onChange={(e) => setModel(e.target.value)} placeholder="Модель" />
+        <MyInput value={year} onChange={(e) => setYear(Number(e.target.value))} placeholder="Год" />
+        <MyButton onClick={addCar}>Добавить</MyButton>
       </form>
     </div>
   )
