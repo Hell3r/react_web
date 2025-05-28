@@ -1,1 +1,14 @@
-@import 'tailwindcss';
+.cars-enter {
+    transform: translateX(-350px);
+}
+.cars-enter-active {
+    transform: translateX(0px);
+    transition: transform 500ms ease-in;
+}
+.cars-exit {
+    transform: translateX(0px);
+}
+.cars-exit-active {
+    transform: translateX(-350px);
+    transition: transform 500ms ease-in;
+}

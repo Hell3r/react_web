@@ -1,9 +1,10 @@
 import React, { useState, useMemo } from 'react'
 import CarList from './components/CarList'
 import AddForm from './components/AddForm'
-import MySelect from './UI/select/MySelect'
-import MyInput from './UI/input/MyInput'
 import FilterCar from './components/FilterCar'
+import ModalWin from './UI/modal/ModalWin'
+import MyButton from './UI/button/MyButton'
+import { useCars } from './hooks/useCars'
 
 function App() {
   const [cars, setCars] = useState([
@@ -12,31 +13,26 @@ function App() {
     {id: 3, name: 'Toyota', model: 'Corolla', year: '2005' }
   ])
   const [filter, setFilter] = useState({sort: '', query: ''})
+  const [visible, setVisible] = useState(false);
+  const [modal, setModal] = useState(false);
+  const sortedAndSearchedCars = useCars(cars, filter.sort, filter.query)
 
   const createCar = (newCar) => {
-    setCars([...cars, newCar])
+    setCars(prevCars => [...prevCars, newCar])
+    setModal(false)
   }
 
   const deleteCar = (car) => {
-    setCars(cars.filter(p => p.id !== car.id))
+    setCars(prevCars => prevCars.filter(p => p.id !== car.id))
   }
-
-  const sortedCars = useMemo(() => {
-    console.log('sortedCars')
-    if (filter.sort) {
-      return [...cars].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]))
-    }
-    return cars
-  }, [filter.sort, cars])
-  
-  const sortedAndSearchedCars = useMemo(() => {
-    return sortedCars.filter(car => car.name.toLowerCase().includes(filter.query.toLowerCase()))
-  }, [filter.query, sortedCars])
 
 
   return (
     <div className="container mx-auto">
-      <AddForm create={createCar} />
+      <MyButton onClick={() => setModal(true)}>Добавить автомобиль</MyButton>
+      <ModalWin visible={modal} setVisible={setModal}>
+        <AddForm create={createCar} />
+      </ModalWin>
       <hr className="my-2" />
       <FilterCar filter={filter} setFilter={setFilter} />
       {sortedAndSearchedCars.length !==  0
