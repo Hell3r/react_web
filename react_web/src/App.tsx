@@ -2,8 +2,8 @@ import React, { useState, useMemo } from 'react'
 import CarList from './components/CarList'
 import AddForm from './components/AddForm'
 import FilterCar from './components/FilterCar'
-import ModalWin from './UI/modal/ModalWin'
-import MyButton from './UI/button/MyButton'
+import ModalWin from './components/UI/modal/ModalWin'
+import MyButton from './components/UI/button/MyButton'
 import { useCars } from './hooks/useCars'
 
 function App() {
